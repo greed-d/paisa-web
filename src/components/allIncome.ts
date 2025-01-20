@@ -20,7 +20,7 @@ export async function displayIncomeData(
         incomeDiv.className = "income-item";
         incomeDiv.innerHTML = `
           <p><strong>ID:</strong> ${income.id}</p>
-          <p><strong>Amount:</strong> ${income.amount}</p>
+          <p class="text-2xl"><strong>Amount:</strong> ${income.amount}</p>
           <p><strong>Source:</strong> ${income.source}</p>
           <p><strong>Reason:</strong> ${income.reason}</p>
           <p><strong>Remarks:</strong> ${income.remarks}</p>

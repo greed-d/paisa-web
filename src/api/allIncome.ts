@@ -12,7 +12,7 @@ export interface AllIncomeApiResponse {
   time: string;
 }
 
-export interface ApiData {
+export interface AllIncomeApiData {
   data: AllIncomeApiResponse[];
 }
 
@@ -36,7 +36,7 @@ export async function fetchIncomeData(): Promise<
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const result: ApiData = await response.json();
+    const result: AllIncomeApiData = await response.json();
     return result.data;
   } catch (error) {
     console.error("Error fetching API data: ", error);
