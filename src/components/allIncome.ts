@@ -1,9 +1,9 @@
 import { AllIncomeApiResponse } from "../api/allIncome";
 
-export async function displayIncomeData(
+export const displayIncomeData = async (
   containerId: string,
   incomeData: AllIncomeApiResponse[],
-) {
+): Promise<void> => {
   const container = document.querySelector<HTMLDivElement>("#all-income");
 
   if (!container) {
@@ -37,4 +37,4 @@ export async function displayIncomeData(
     console.error("Error displaying income data", error);
     container.innerHTML = "<p>Failed to load income data</p>";
   }
-}
+};
