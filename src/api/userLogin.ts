@@ -23,10 +23,11 @@ form?.addEventListener("submit", async (event) => {
 interface LogIn {
   username: string;
   password: string;
-  // checked: boolean;
+  rememberMe: boolean;
 }
 
 const sendData = async (data: LogIn) => {
+  console.log("Send data");
   try {
     const response = await fetch("http://127.0.0.1:8000/auth/", {
       method: "POST",

@@ -3,6 +3,7 @@ console.log(form);
 
 form?.addEventListener("submit", async (event) => {
   event.preventDefault();
+  console.log("hello");
 
   const formData = {
     first_name: (document.querySelector(".first_name") as HTMLInputElement)
@@ -40,7 +41,6 @@ const sendData = async (data: FormData): Promise<void> => {
     if (response.ok) {
       const result = await response.json();
       console.log("Registration Successful : ", result);
-      alert("Registration Successful!");
 
       window.location.href = "/login.html";
     } else {
