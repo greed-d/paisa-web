@@ -1,10 +1,11 @@
-import { AllIncomeApiResponse } from "../api/allIncome";
+import { AllIncome } from "../api/allIncome";
+import { Income } from "../api/allIncome";
 
 export const displayIncomeData = async (
   containerId: string,
-  incomeData: AllIncomeApiResponse[],
+  incomeData: AllIncome[],
 ): Promise<void> => {
-  const container = document.querySelector<HTMLDivElement>("#all-income");
+  const container = document.querySelector<HTMLDivElement>(`${containerId}`);
 
   if (!container) {
     console.error(`No element with ID '${containerId}' found.`);
@@ -12,15 +13,16 @@ export const displayIncomeData = async (
   }
 
   try {
-    if (incomeData && incomeData.length > 0) {
+    if (incomeData && "data" in incomeData && Array.isArray(incomeData.data)) {
       container.innerHTML = "";
 
-      incomeData.forEach((income: AllIncomeApiResponse) => {
+      incomeData.data.forEach((income: Income) => {
+        console.log(income);
         const incomeDiv = document.createElement("div");
         incomeDiv.className = "income-item";
         incomeDiv.innerHTML = `
           <p><strong>ID:</strong> ${income.id}</p>
-          <p class="text-2xl"><strong>Amount:</strong> ${income.amount}</p>
+          <p><strong>Amount:</strong> ${income.amount}</p>
           <p><strong>Source:</strong> ${income.source}</p>
           <p><strong>Reason:</strong> ${income.reason}</p>
           <p><strong>Remarks:</strong> ${income.remarks}</p>

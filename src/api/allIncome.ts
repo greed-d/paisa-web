@@ -1,9 +1,6 @@
-// localStorage.setItem(
-//   "accessToken",
-//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzM3MzY3OTkyLCJleHAiOjE3Mzc0NTQzOTIsInR5cGUiOiJhY2Nlc3MifQ.JBuh2XDKTGOGbR790eLviAGQqVXS4RYEAUUVYW2e2rQ",
-// );
+import { getAccessToken } from "../utils";
 
-export interface AllIncomeApiResponse {
+export interface Income {
   id: number;
   amount: string;
   source: string;
@@ -12,33 +9,43 @@ export interface AllIncomeApiResponse {
   time: string;
 }
 
-export interface AllIncomeApiData {
-  data: AllIncomeApiResponse[];
+export interface ErrorDetails {
+  [field: string]: string[];
 }
 
-export const fetchIncomeData = async (): Promise<
-  AllIncomeApiResponse[] | undefined
-> => {
-  try {
-    // const token = localStorage.getItem("accessToken");
-    // if (!token) {
-    //   throw new Error("No access token found, please login");
-    // }
+export interface AllIncome {
+  success: boolean;
+  message: string;
+  data: Income[] | null;
+  errors: ErrorDetails | null;
+}
 
-    const response = await fetch("http://localhost:8000/income", {
+export const fetchIncomeData = async (): Promise<AllIncome[] | undefined> => {
+  try {
+    const token = getAccessToken();
+    if (!token) {
+      throw new Error("No access token found, please login");
+    }
+
+    const response = await fetch("http://127.0.0.1:8000/income", {
       method: "GET",
       headers: {
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      credentials: "include",
+      // credentials: "include",
     });
+
+    console.log("Response status : ", response.status);
+    console.log("Response headers : ", response.headers);
+    console.log("cookies after request : ", document.cookie);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const result: AllIncomeApiData = await response.json();
-    return result.data;
+    const result: AllIncome[] = await response.json();
+    return result;
   } catch (error) {
     console.error("Error fetching API data: ", error);
   }
