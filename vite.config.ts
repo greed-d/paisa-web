@@ -18,6 +18,8 @@ export default defineConfig({
         main: "./public/index.html",
         allCategory: "./public/all_category.html",
         allIncome: "./public/all_income.html",
+        addIncome: "./public/income_form.html",
+        amountForm: "./public/amount_form.html",
       },
     },
   },
