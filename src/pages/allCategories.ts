@@ -1,5 +1,6 @@
 import { fetchAllCategories } from "../api/allCategories";
 import { displayAllCategories } from "../components/allCategories";
+import "@fontsource/poppins";
 import "../style.css";
 
 const getAllCategories = async () => {
