@@ -1,19 +1,41 @@
-localStorage.setItem(
-  "accessToken",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzM3MzY3OTkyLCJleHAiOjE3Mzc0NTQzOTIsInR5cGUiOiJhY2Nlc3MifQ.JBuh2XDKTGOGbR790eLviAGQqVXS4RYEAUUVYW2e2rQ",
-);
+import { getAccessToken } from "../utils.ts";
 
 export interface Balance {
-  current_balance: string;
-  total_income: string;
-  total_expense: string;
+  current_balance: number;
+  total_income: number;
+  total_expense: number;
 }
 
-export const fetchCurrentBalance = async () => {
+export interface ErrorDetails {
+  [field: string]: string[];
+}
+
+export interface BalanceInfo {
+  success: boolean;
+  message: string;
+  data: Balance | null;
+  errors: ErrorDetails | null;
+}
+
+export const fetchCurrentBalance = async (): Promise<
+  BalanceInfo | undefined
+> => {
   try {
-    const token = localStorage.getItem("accessToken");
+    const token = getAccessToken();
     if (!token) {
       console.error(`No access token found, Please log in`);
     }
+
+    const response = await fetch("http://127.0.0.1:8000/current_balance/", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      // credentials: "include",
+    });
+    console.log(response.status);
+    const balanceInfo: BalanceInfo = await response.json();
+    return balanceInfo;
   } catch (error) {}
 };
