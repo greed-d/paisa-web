@@ -49,14 +49,13 @@ export const displayAllCategories = async (
 
 export const fetchAllCategories = async (): Promise<AllCategory> => {
   // Changed return type
-  const token = setAccessToken();
   try {
     const response = await fetch("http://127.0.0.1:8000/categories/", {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
+      credentials: "include",
     });
 
     if (!response.ok) {
