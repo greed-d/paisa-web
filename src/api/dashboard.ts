@@ -1,4 +1,4 @@
-import { getAccessToken } from "../utils.ts";
+import { getAccessToken, setAccessToken } from "../utils.ts";
 
 export interface Balance {
   current_balance: number;
@@ -29,10 +29,10 @@ export const fetchCurrentBalance = async (): Promise<
     const response = await fetch("http://127.0.0.1:8000/current_balance/", {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
+        // Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      // credentials: "include",
+      credentials: "include",
     });
     console.log(response.status);
     const balanceInfo: BalanceInfo = await response.json();

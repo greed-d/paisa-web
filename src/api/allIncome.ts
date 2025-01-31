@@ -22,23 +22,22 @@ export interface AllIncome {
 
 export const fetchIncomeData = async (): Promise<AllIncome[] | undefined> => {
   try {
-    const token = getAccessToken();
-    if (!token) {
-      throw new Error("No access token found, please login");
-    }
+    // const token = getAccessToken();
+    // if (!token) {
+    //   throw new Error("No access token found, please login");
+    // }
 
     const response = await fetch("http://127.0.0.1:8000/income", {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
+        // Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      // credentials: "include",
+      credentials: "include",
     });
 
     console.log("Response status : ", response.status);
     console.log("Response headers : ", response.headers);
-    console.log("cookies after request : ", document.cookie);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

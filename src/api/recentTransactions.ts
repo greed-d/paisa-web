@@ -32,9 +32,10 @@ export const fetchRecentTransactions = async (): Promise<
     const response = await fetch("http://127.0.0.1:8000/recent_transactions/", {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
+        // Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
+      credentials: "include",
     });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

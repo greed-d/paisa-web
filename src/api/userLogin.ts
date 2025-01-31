@@ -1,3 +1,5 @@
+import { setAccessToken } from "../utils";
+
 const form = document.querySelector("#sign-in");
 console.log(form);
 
@@ -31,17 +33,15 @@ const sendData = async (data: LogIn) => {
   try {
     const response = await fetch("http://127.0.0.1:8000/auth/", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
       credentials: "include",
     });
 
     if (response.ok) {
       const result = await response.json();
+      setAccessToken(result.data.access_token);
       window.location.href = "/index.html";
-      console.log("Login Successful ! ", result);
       alert("Login Successful!");
       console.log("Response status : ", response.status);
       console.log("Response headers : ", response.headers);
