@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <table class="w-full table-fixed mt-3">
+      <thead>
+        <tr class="bg-gray-100">
+          <th
+            class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase"
+          >
+            Reason
+          </th>
+          <th
+            class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase"
+          >
+            Source
+          </th>
+          <th
+            class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase"
+          >
+            Amount
+          </th>
+          <th
+            class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase"
+          >
+            time
+          </th>
+          <th
+            class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase"
+          >
+            type
+          </th>
+        </tr>
+      </thead>
+      <tbody class="bg-white" id="transaction-show-table">
+        <tr>
+          <td class="py-4 px-6 border-b border-gray-200" id="table-reason-div">
+            Some random reason
+          </td>
+          <td
+            class="py-4 px-6 border-b border-gray-200 truncate"
+            id="table-source-div"
+          >
+            Bank
+          </td>
+          <td class="py-4 px-6 border-b border-gray-200" id="table-amount-div">
+            Rs. 2000
+          </td>
+          <td class="py-4 px-6 border-b border-gray-200" id="table-date-div">
+            2020-01-26
+          </td>
+          <td class="py-4 px-6 border-b border-gray-200" id="table-type-div">
+            Income
+            <span class="bg-green-500 text-white py-3 px-5 rounded-full text-l"
+              >Income</span
+            >
+            Expense
+            <span class="bg-red-500 text-white py-3 px-5 rounded-full text-l"
+              >Expense</span
+            >
+          </td>
+        </tr>
+        <!-- Add more rows here -->
+      </tbody>
+    </table>
+  </body>
+</html>

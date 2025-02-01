@@ -1,3 +1,4 @@
+import { loginState } from "../pages/login-state";
 import { setAccessToken } from "../utils";
 
 const form = document.querySelector("#sign-in");
@@ -43,6 +44,8 @@ const sendData = async (data: LogIn) => {
       setAccessToken(result.data.access_token);
       window.location.href = "/index.html";
       alert("Login Successful!");
+      loginState.isLoggedIn = true;
+      // loginState.user  = res.user
       console.log("Response status : ", response.status);
       console.log("Response headers : ", response.headers);
       console.log("cookies after request : ", document.cookie);

@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   server: {
+    open: "/index.html",
     proxy: {
       "/api": {
         target: "http://127.0.0.1:8000",
@@ -20,6 +21,7 @@ export default defineConfig({
         allIncome: "./public/all_income.html",
         addIncome: "./public/income_form.html",
         amountForm: "./public/amount_form.html",
+        loader: "./public/loader.html",
       },
     },
   },

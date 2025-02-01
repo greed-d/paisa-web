@@ -8,7 +8,6 @@ import {
 import "../style.css";
 import { fetchRecentTransactions } from "../api/recentTransactions.ts";
 import { displayRecentTransactions } from "../components/recentTransactions.ts";
-
 const getCurrentBalance = async () => {
   try {
     const currentBalance = await fetchCurrentBalance();
