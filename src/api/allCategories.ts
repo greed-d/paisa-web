@@ -1,5 +1,3 @@
-import { getAccessToken } from "../utils";
-
 export interface Category {
   id: number;
   name: string;
@@ -23,7 +21,6 @@ export const fetchAllCategories = async (): Promise<
     const response = await fetch("http://127.0.0.1:8000/categories/", {
       method: "GET",
       headers: {
-        // Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       credentials: "include",
@@ -34,9 +31,7 @@ export const fetchAllCategories = async (): Promise<
     if (!response.ok) {
       throw new Error(`HTTP error occured!! Error : ${response.status}`);
     }
-    const allCategory: AllCategory[] = await response.json();
-
-    return allCategory;
+    return await response.json();
   } catch (error) {
     console.error(`Error fetching API data : ${error}`);
   }
