@@ -21,11 +21,6 @@ export const fetchCurrentBalance = async (): Promise<
   BalanceInfo | undefined
 > => {
   try {
-    const token = getAccessToken();
-    if (!token) {
-      console.error(`No access token found, Please log in`);
-    }
-
     const response = await fetch("http://127.0.0.1:8000/current_balance/", {
       method: "GET",
       headers: {

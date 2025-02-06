@@ -8,6 +8,7 @@ import {
 import "../style.css";
 import { fetchRecentTransactions } from "../api/recentTransactions.ts";
 import { displayRecentTransactions } from "../components/recentTransactions.ts";
+import { loginState } from "./login-state.ts";
 const getCurrentBalance = async () => {
   try {
     const currentBalance = await fetchCurrentBalance();
@@ -16,9 +17,10 @@ const getCurrentBalance = async () => {
       displayTotalExpense("#total_expense", currentBalance);
       displayTotalIncome("#total_income", currentBalance);
     } else {
-      const container = document.querySelector("#current_amount");
-      if (container) {
-        container.innerHTML = `
+      const balance_container = document.querySelector("#current_amount");
+      const expense_container = document.querySelector("#total_expense");
+      if (balance_container && expense_container) {
+        balance_container.innerHTML = `
           <div class="text-4xl font-semibold">No Data</div>`;
       }
     }
@@ -49,5 +51,19 @@ const getRecentTransactions = async () => {
   }
 };
 
+const showGreeting = async () => {
+  try {
+    const userName = loginState.user?.username;
+    console.log(loginState.user);
+    let greetingContainer = document.querySelector("#greeting");
+    if (!greetingContainer) {
+      console.log(`No container named ${greetingContainer}`);
+      return;
+    }
+    greetingContainer.innerHTML = `<p>Hello ${userName}</p>`;
+  } catch (error) {}
+};
+
 getRecentTransactions();
 getCurrentBalance();
+showGreeting();
