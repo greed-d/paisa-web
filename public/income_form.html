@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Income Input Form</title>
     <link href="../src/style.css" rel="stylesheet" />
+    <script type="module" src="/src/pages/navbar.ts"></script>
+    <script src="https://unpkg.com/phosphor-icons"></script>
     <link
       href="../node_modules/flowbite-datepicker/dist/css/datepicker.min.css"
       rel="stylesheet"
@@ -12,166 +14,187 @@
   </head>
   <body class="bg-gray-100">
     <script type="module" src="/src/api/addIncome.ts"></script>
+
+    <script src="/src/pages/changeForm.ts"></script>
     <script src="../node_modules/flowbite/dist/flowbite.min.js"></script>
-    <div id="income-form" class="grid place-items-center h-screen">
-      <div>
-        <h1 class="flex text-4xl font-bold justify-center mb-3">
-          Enter your income
-        </h1>
-        <form class="max-w-sm mx-auto" id="income-input-form">
-          <label
-            for="number-input"
-            class="block mb-2 text-m font-semibold text-gray-900 dark:text-white"
-            >Enter amount :
-          </label>
-          <input
-            type="number"
-            id="income-amount"
-            aria-describedby="helper-text-explanation"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-m rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="90210"
-            required
-          />
-          <label
-            for="source"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >Select an option :
-          </label>
-          <select
-            id="income-source"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option selected>Choose a source</option>
-            <option value="Cash">Cash</option>
-            <option value="Bank">Bank</option>
-            <option value="Wallet">Wallet</option>
-          </select>
+    <div id="income-form" class="flex justify-center">
+      <div class="flex items-center justify-around mt-3 mb-3">
+        <div class="text-center">
+          <div class="inline-flex rounded-lg bg-gray-100 p-2 space-x-2">
+            <!-- Buttons -->
+            <button
+              id="income-button"
+              class="px-6 py-3 rounded-md text-sm font-medium transition-colors duration-200 focus:outline-none bg-blue-500 text-white"
+            >
+              Income
+            </button>
+            <button
+              id="expense-button"
+              class="px-6 py-3 rounded-md text-sm font-medium transition-colors duration-200 focus:outline-none bg-gray-200 text-gray-700 hover:bg-gray-300"
+            >
+              Expense
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h1 class="flex text-4xl font-bold justify-center mb-3">
+      Enter your income
+    </h1>
+    <div>
+      <form class="max-w-sm mx-auto" id="income-input-form">
+        <label
+          for="number-input"
+          class="block mb-2 text-m font-semibold text-gray-900 dark:text-white"
+          >Enter amount :
+        </label>
+        <input
+          type="number"
+          id="income-amount"
+          aria-describedby="helper-text-explanation"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-m rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="90210"
+          required
+        />
+        <label
+          for="source"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Select an option :
+        </label>
+        <select
+          id="income-source"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected>Choose a source</option>
+          <option value="Cash">Cash</option>
+          <option value="Bank">Bank</option>
+          <option value="Wallet">Wallet</option>
+        </select>
 
-          <div class="flex justify-between">
-            <div>
-              <script src="../node_modules/flowbite/dist/flowbite.min.js"></script>
-              <label
-                for="time"
-                class="block mb-2 text-m font-semibold text-gray-900 dark:text-white pt-3"
-                >Select date:</label
+        <div class="flex justify-between">
+          <div>
+            <script src="../node_modules/flowbite/dist/flowbite.min.js"></script>
+            <label
+              for="time"
+              class="block mb-2 text-m font-semibold text-gray-900 dark:text-white pt-3"
+              >Select date:</label
+            >
+            <!-- <div class="relative max-w-sm mr-3"> -->
+            <!--   <div -->
+            <!--     class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none" -->
+            <!--   > -->
+            <!--     <svg -->
+            <!--       class="w-4 h-4 text-gray-500 dark:text-gray-400" -->
+            <!--       aria-hidden="true" -->
+            <!--       xmlns="http://www.w3.org/2000/svg" -->
+            <!--       fill="currentColor" -->
+            <!--       viewBox="0 0 20 20" -->
+            <!--     > -->
+            <!--       <path -->
+            <!--         d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" -->
+            <!--       /> -->
+            <!--     </svg> -->
+            <!--   </div> -->
+            <!--   <input -->
+            <!--     id="income-datepicker-autohide" -->
+            <!--     datepicker -->
+            <!--     datepicker-autohide -->
+            <!--     type="text" -->
+            <!--     class="bg-gray-50 border border-gray-300 text-gray-900 text-m rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" -->
+            <!--     placeholder="Select date" -->
+            <!--     required -->
+            <!--   /> -->
+            <!-- </div> -->
+
+            <div class="relative max-w-sm">
+              <div
+                class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
               >
-              <!-- <div class="relative max-w-sm mr-3"> -->
-              <!--   <div -->
-              <!--     class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none" -->
-              <!--   > -->
-              <!--     <svg -->
-              <!--       class="w-4 h-4 text-gray-500 dark:text-gray-400" -->
-              <!--       aria-hidden="true" -->
-              <!--       xmlns="http://www.w3.org/2000/svg" -->
-              <!--       fill="currentColor" -->
-              <!--       viewBox="0 0 20 20" -->
-              <!--     > -->
-              <!--       <path -->
-              <!--         d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" -->
-              <!--       /> -->
-              <!--     </svg> -->
-              <!--   </div> -->
-              <!--   <input -->
-              <!--     id="income-datepicker-autohide" -->
-              <!--     datepicker -->
-              <!--     datepicker-autohide -->
-              <!--     type="text" -->
-              <!--     class="bg-gray-50 border border-gray-300 text-gray-900 text-m rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" -->
-              <!--     placeholder="Select date" -->
-              <!--     required -->
-              <!--   /> -->
-              <!-- </div> -->
-
-              <div class="relative max-w-sm">
-                <div
-                  class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+                <svg
+                  class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
                 >
-                  <svg
-                    class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
-                    />
-                  </svg>
-                </div>
-                <input
-                  id="income-datepicker-autohide"
-                  datepicker
-                  datepicker-buttons
-                  datepicker-autoselect-today
-                  datepicker-format="yyyy-mm-dd"
-                  type="text"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-m rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Select date"
-                />
+                  <path
+                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+                  />
+                </svg>
               </div>
+              <input
+                id="income-datepicker-autohide"
+                datepicker
+                datepicker-buttons
+                datepicker-autoselect-today
+                datepicker-format="yyyy-mm-dd"
+                type="text"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-m rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Select date"
+              />
             </div>
-            <div>
-              <label
-                for="time"
-                class="block mb-2 text-m font-semibold text-gray-900 dark:text-white pt-3"
-                >Select time:</label
-              >
-              <div class="relative">
-                <input
-                  type="time"
-                  id="income-time"
-                  class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-m rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  min="00:00"
-                  max="23:59"
-                  value="00:00"
-                  required
-                />
-              </div>
-            </div>
-          </div>
-          <div class="mb-6">
-            <label
-              for="income-reason"
-              class="block mb-2 text-m font-medium text-gray-900 dark:text-white mt-5"
-              >Reason :
-            </label>
-            <input
-              type="text"
-              id="income-reason"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-m rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required
-            />
-          </div>
-          <div class="mb-6">
-            <label
-              for="income-remarks"
-              class="block mb-2 text-m font-semibold text-gray-900 dark:text-white"
-              >Remarks :
-            </label>
-            <input
-              type="text"
-              id="income-remarks"
-              required
-              class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />
           </div>
           <div>
-            <button
-              type="submit"
-              class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-m px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            <label
+              for="time"
+              class="block mb-2 text-m font-semibold text-gray-900 dark:text-white pt-3"
+              >Select time:</label
             >
-              Submit
-            </button>
-
-            <button
-              type="button"
-              class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-            >
-              Add category
-            </button>
+            <div class="relative">
+              <input
+                type="time"
+                id="income-time"
+                class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-m rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                min="00:00"
+                max="23:59"
+                value="00:00"
+                required
+              />
+            </div>
           </div>
-        </form>
-      </div>
+        </div>
+        <div class="mb-6">
+          <label
+            for="income-reason"
+            class="block mb-2 text-m font-medium text-gray-900 dark:text-white mt-5"
+            >Reason :
+          </label>
+          <input
+            type="text"
+            id="income-reason"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-m rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required
+          />
+        </div>
+        <div class="mb-6">
+          <label
+            for="income-remarks"
+            class="block mb-2 text-m font-semibold text-gray-900 dark:text-white"
+            >Remarks :
+          </label>
+          <input
+            type="text"
+            id="income-remarks"
+            required
+            class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
+        </div>
+        <div>
+          <button
+            type="submit"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-m px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Submit
+          </button>
+
+          <button
+            type="button"
+            class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          >
+            Add category
+          </button>
+        </div>
+      </form>
     </div>
   </body>
 </html>
