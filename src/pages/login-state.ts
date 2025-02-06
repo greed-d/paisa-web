@@ -1,4 +1,4 @@
-import { UserType } from "@/types/global";
+import { UserType } from "../types/global.ts";
 
 interface LoginStateType {
   isLoggedIn: boolean;
