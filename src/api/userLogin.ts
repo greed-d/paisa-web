@@ -41,11 +41,19 @@ const sendData = async (data: LogIn) => {
 
     if (response.ok) {
       const result = await response.json();
-      setAccessToken(result.data.access_token);
-      window.location.href = "/index.html";
+      window.location.href = "./dashoboard.html";
       alert("Login Successful!");
       loginState.isLoggedIn = true;
-      // loginState.user  = res.user
+      loginState.user = {
+        id: result.data.id,
+        email: result.data.email,
+        last_login: result.data.last_login || null,
+        username: result.data.username,
+        first_name: result.data.first_name,
+        last_name: result.data.last_name,
+      };
+      console.log(`User is ${loginState.user}`);
+
       console.log("Response status : ", response.status);
       console.log("Response headers : ", response.headers);
       console.log("cookies after request : ", document.cookie);
